@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  host: 127.0.0.1
+  pool: 5
+  port: 5432
+  timeout: 5000
+  username: login
+  password: password
+
+development:
+  <<: *default
+  database: volt_game_development
+
+test:
+  <<: *default
+  database: volt_game_test
+
+production:
+  <<: *default
+  database: volt_game_production
