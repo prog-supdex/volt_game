@@ -55,8 +55,13 @@ RSpec.describe Player, type: :model do
     end
 
     it 'returns top 5 players by team' do
+      3.times do
+        create(:match_player_indicator, player: create(:player, team: team_two), indicator: indicator)
+      end
+
       top_five_players = described_class.top_five_players_by_indicator(indicator_id: indicator.id, team_id: team_two.id)
 
+      expect(top_five_players.to_a.size).to eq(5)
       expect(top_five_players.first).to eq(player_two)
       expect(top_five_players.second).to eq(player_three)
     end
