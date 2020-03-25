@@ -1,9 +1,9 @@
 class CreateMatchPlayerIndicators < ActiveRecord::Migration[5.2]
   def change
     create_table :match_player_indicators do |t|
-      t.references :match, foreign_key: true
-      t.references :player, foreign_key: true
-      t.references :indicator, foreign_key: true
+      t.references :match, foreign_key: true, null: false
+      t.references :player, foreign_key: true, null: false
+      t.references :indicator, foreign_key: true, null: false
 
       t.timestamps
     end
