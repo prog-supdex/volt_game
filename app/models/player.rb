@@ -18,7 +18,7 @@ class Player < ApplicationRecord
     scope.where(players: { team_id: team_id })
   end
 
-  def exists_indicator_in_last_5_matches?(indicator)
+  def exists_indicator_in_last_matches?(indicator)
     match_player_indicators.exists_indicator_in_last_matches?(indicator)
   end
 
