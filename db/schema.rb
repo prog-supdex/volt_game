@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 2020_03_24_161217) do
   enable_extension "plpgsql"
 
   create_table "indicators", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "match_player_indicators", force: :cascade do |t|
-    t.bigint "match_id"
-    t.bigint "player_id"
-    t.bigint "indicator_id"
+    t.bigint "match_id", null: false
+    t.bigint "player_id", null: false
+    t.bigint "indicator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["indicator_id"], name: "index_match_player_indicators_on_indicator_id"
@@ -34,21 +34,21 @@ ActiveRecord::Schema.define(version: 2020_03_24_161217) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.bigint "team_id"
+    t.string "name", null: false
+    t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
