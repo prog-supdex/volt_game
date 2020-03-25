@@ -6,10 +6,10 @@ class Player < ApplicationRecord
 
   def self.top_five_players_by_indicator(indicator_id:, team_id: nil)
     scope =
-      select('COUNT(indicator_id) AS cn_indicators, player_id')
+      select('COUNT(indicator_id) AS cn_indicators, players.id')
         .joins(:match_player_indicators)
         .where(match_player_indicators: { indicator_id: indicator_id })
-        .group('indicator_id, player_id')
+        .group('indicator_id, players.id')
         .order('cn_indicators DESC')
         .limit(5)
 
