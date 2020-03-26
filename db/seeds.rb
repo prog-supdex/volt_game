@@ -1,5 +1,6 @@
 Indicator.create(name: 'пробежал 10км')
 Indicator.create(name: '70% точных передач')
+Indicator.create(name: Faker::Lorem.word)
 
 Team.create(name: Faker::Games::Dota.team)
 Team.create(name: Faker::Games::Dota.team)
@@ -10,11 +11,11 @@ Team.all.each do |team|
   end
 end
 
-10.times do
+3.times do
   Match.create(name: Faker::Lorem.word)
 end
 
-indicator_ids = Indicator.ids
+indicator_ids = Indicator.ids << nil
 players_ids = Player.limit(6).order(created_at: :desc).ids
 
 Match.ids.each do |match_id|
