@@ -10,11 +10,6 @@ RSpec.describe Player, type: :model do
   it { is_expected.to belong_to(:team) }
   it { is_expected.to have_many(:match_player_indicators) }
 
-  it 'creates relation indicator to player' do
-    expect { player.complete_indicator_in_match!(match: match, indicator: indicator) }
-      .to change { MatchPlayerIndicator.count }.by(1)
-  end
-
   describe '#exists_indicator_in_last_matches?' do
     before do
       create_list(:match_player_indicator, 5)
