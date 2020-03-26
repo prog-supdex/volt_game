@@ -4,20 +4,6 @@ class Player < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.top_five_players_by_indicator(indicator_id:, team_id: nil)
-    scope =
-      select('COUNT(indicator_id) AS cn_indicators, players.id')
-        .joins(:match_player_indicators)
-        .where(match_player_indicators: { indicator_id: indicator_id })
-        .group('indicator_id, players.id')
-        .order('cn_indicators DESC')
-        .limit(5)
-
-    return scope if team_id.blank?
-
-    scope.where(players: { team_id: team_id })
-  end
-
   def exists_indicator_in_last_matches?(indicator)
     match_player_indicators.exists_indicator_in_last_matches?(indicator)
   end
