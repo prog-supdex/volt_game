@@ -27,7 +27,7 @@ describe Players::ExistsPlayerWithIndicatorInLastMatchesService do
       create(:match_player_indicator, indicator: indicator, player: player)
       create_list(:match_player_indicator, 2, player: player_five)
 
-      expect(player.exists_indicator_in_last_matches?(indicator)).to eq(true)
+      expect(described_class.call(indicator: indicator, player: player)).to eq(true)
     end
   end
 end
