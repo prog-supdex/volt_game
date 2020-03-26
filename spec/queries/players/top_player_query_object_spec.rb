@@ -1,7 +1,6 @@
 require 'rails_helper'
-#require './app/services/paid_options/handlers/catalog_banner.rb'
 
-describe Player::TopPlayersQueryObject do
+describe Players::TopPlayersQueryObject do
   let(:indicator) { create(:indicator) }
 
   let(:team_one) { create(:team) }

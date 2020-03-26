@@ -1,4 +1,4 @@
-module Player::TopPlayersQueryObject
+module Players::TopPlayersQueryObject
   def self.call(indicator:, team: nil)
     scope =
       Player
