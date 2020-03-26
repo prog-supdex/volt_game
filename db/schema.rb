@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_161217) do
   create_table "match_player_indicators", force: :cascade do |t|
     t.bigint "match_id", null: false
     t.bigint "player_id", null: false
-    t.bigint "indicator_id", null: false
+    t.bigint "indicator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["indicator_id"], name: "index_match_player_indicators_on_indicator_id"
