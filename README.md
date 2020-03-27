@@ -22,13 +22,15 @@ ___
 
 Отметить, что игрок выполнил определенный показатель в матче
 ```
-MatchPlayerIndicatorCreator.call(player: player_instance, indicator: indicator_instance, match: match_instance)
+MatchPlayerIndicator.create(player: player_instance, indicator: indicator_instance, match: match_instance)
 ```
 
 Так как необязательно, что игрок выполнит показатель за матч, indicator является необязательным
 ```
-MatchPlayerIndicatorCreator.call(player: player_instance, match: match_instance)
+MatchPlayerIndicator.create(player: player_instance, match: match_instance)
 ```
+
+Игрок не может выполнить один и тот же показатель за один и тот же матч больше одного раза
 
 ##### Что можно было реализовать
 
