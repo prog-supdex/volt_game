@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_161217) do
+ActiveRecord::Schema.define(version: 2020_04_04_132708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,22 @@ ActiveRecord::Schema.define(version: 2020_03_24_161217) do
   end
 
   create_table "match_player_indicators", force: :cascade do |t|
-    t.bigint "match_id", null: false
-    t.bigint "player_id", null: false
-    t.bigint "indicator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "match_player_id", null: false
+    t.bigint "indicator_id", null: false
     t.index ["indicator_id"], name: "index_match_player_indicators_on_indicator_id"
-    t.index ["match_id", "player_id", "indicator_id"], name: "unq_idx_m_p_i_on_player_id_and_indicator_id_and_match_id", unique: true
-    t.index ["match_id"], name: "index_match_player_indicators_on_match_id"
-    t.index ["player_id"], name: "index_match_player_indicators_on_player_id"
+    t.index ["match_player_id", "indicator_id"], name: "unq_idx_m_p_i_on_match_player_id_and_indicator_id", unique: true
+    t.index ["match_player_id"], name: "index_match_player_indicators_on_match_player_id"
+  end
+
+  create_table "match_players", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.bigint "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_match_players_on_match_id"
+    t.index ["player_id"], name: "index_match_players_on_player_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -54,7 +61,8 @@ ActiveRecord::Schema.define(version: 2020_03_24_161217) do
   end
 
   add_foreign_key "match_player_indicators", "indicators"
-  add_foreign_key "match_player_indicators", "matches"
-  add_foreign_key "match_player_indicators", "players"
+  add_foreign_key "match_player_indicators", "match_players"
+  add_foreign_key "match_players", "matches"
+  add_foreign_key "match_players", "players"
   add_foreign_key "players", "teams"
 end
