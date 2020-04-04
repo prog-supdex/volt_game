@@ -21,4 +21,6 @@
 class MatchPlayer < ApplicationRecord
   belongs_to :match
   belongs_to :player
+
+  has_many :match_player_indicators
 end
