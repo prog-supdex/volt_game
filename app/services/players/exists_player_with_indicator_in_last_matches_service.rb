@@ -1,17 +1,19 @@
 module Players::ExistsPlayerWithIndicatorInLastMatchesService
+  MATCHES_LIMIT = 5
+
   def self.call(player:, indicator:)
     last_five_matches_by_team_scope =
-      MatchPlayerIndicator
-        .joins(:player)
+      Match
+        .joins(:players)
         .where(players: { team_id: player.team_id })
-        .group('match_player_indicators.id')
+        .group('matches.id')
         .order(created_at: :desc)
-        .limit(5)
-        .select('match_player_indicators.id')
+        .limit(MATCHES_LIMIT)
+        .select('matches.id')
 
     MatchPlayerIndicator
       .joins(:player)
       .where(player_id: player.id, indicator_id: indicator.id)
-      .where(id: last_five_matches_by_team_scope).exists?
+      .where(match_id: last_five_matches_by_team_scope).exists?
   end
 end

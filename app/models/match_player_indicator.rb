@@ -5,7 +5,7 @@
 #  id           :bigint           not null, primary key
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  indicator_id :bigint
+#  indicator_id :bigint           not null
 #  match_id     :bigint           not null
 #  player_id    :bigint           not null
 #

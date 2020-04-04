@@ -8,6 +8,7 @@ describe Players::ExistsPlayerWithIndicatorInLastMatchesService do
   let(:player_three) { create(:player, team: team_one) }
   let(:player_four) { create(:player, team: team_one) }
   let(:player_five) { create(:player, team: team_one) }
+  let(:match) { create(:match) }
 
   describe '.call' do
     before do
@@ -16,7 +17,7 @@ describe Players::ExistsPlayerWithIndicatorInLastMatchesService do
       create_list(:match_player_indicator, 2, player: player_three)
       create_list(:match_player_indicator, 2, player: player_four)
       create_list(:match_player_indicator, 2, player: player_five)
-      create_list(:match_player_indicator, 10)
+      create_list(:match_player_indicator, 5)
     end
 
     it 'returns false' do

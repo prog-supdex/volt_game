@@ -21,8 +21,4 @@ class Player < ApplicationRecord
   has_many :match_player_indicators
 
   validates :name, presence: true
-
-  def exists_indicator_in_last_matches?(indicator)
-    match_player_indicators.exists_indicator_in_last_matches?(indicator)
-  end
 end

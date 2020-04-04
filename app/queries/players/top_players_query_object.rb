@@ -1,4 +1,6 @@
 module Players::TopPlayersQueryObject
+  TOP_PLAYERS_LIMIT = 5
+
   def self.call(indicator:, team: nil)
     scope =
       Player
@@ -7,7 +9,7 @@ module Players::TopPlayersQueryObject
         .where(match_player_indicators: { indicator_id: indicator.id })
         .group('indicator_id, players.id')
         .order('cn_indicators DESC')
-        .limit(5)
+        .limit(TOP_PLAYERS_LIMIT)
 
     return scope if team.blank?
 
