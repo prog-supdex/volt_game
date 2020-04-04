@@ -8,8 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Match < ApplicationRecord
-  has_many :match_player_indicators, dependent: :destroy
-  has_many :players, through: :match_player_indicators
+  has_many :match_players, dependent: :destroy
+  has_many :players, through: :match_players
 
   validates :name, presence: true
 end
