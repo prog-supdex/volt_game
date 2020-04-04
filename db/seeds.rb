@@ -15,12 +15,15 @@ end
   Match.create(name: Faker::Lorem.word)
 end
 
-indicator_ids = Indicator.ids << nil
-players_ids = Player.limit(6).order(created_at: :desc).ids
+players_ids = Player.order(created_at: :desc).ids
 
 Match.ids.each do |match_id|
   players_ids.each do |player_id|
-    MatchPlayerIndicator.create(match_id: match_id, player_id: player_id, indicator_id: indicator_ids.sample)
+    MatchPlayer.create(match_id: match_id, player_id: player_id)
   end
 end
 
+indicator_ids = Indicator.ids
+MatchPlayer.ids.each do |match_player_id|
+  MatchPlayerIndicator.create(match_player_id: match_player_id, indicator_id: indicator_ids.sample)
+end
