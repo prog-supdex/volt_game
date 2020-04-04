@@ -18,7 +18,7 @@
 #
 class Player < ApplicationRecord
   belongs_to :team
-  has_many :match_player_indicators
+  has_many :match_players
 
   validates :name, presence: true
 end
