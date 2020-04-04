@@ -12,8 +12,8 @@ module Players::ExistsPlayerWithIndicatorInLastMatchesService
         .select('matches.id')
 
     MatchPlayerIndicator
-      .joins(:player)
-      .where(player_id: player.id, indicator_id: indicator.id)
-      .where(match_id: last_five_matches_by_team_scope).exists?
+      .joins(:match_player)
+      .where(indicator_id: indicator.id, match_players: { player_id: player.id })
+      .where(match_players: { match_id: last_five_matches_by_team_scope }).exists?
   end
 end
